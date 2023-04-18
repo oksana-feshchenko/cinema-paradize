@@ -1,33 +1,63 @@
-# Dockerizing DRF Cinema
+# Cinema Paradize
+### Features
+This is DRF project for managing your own cinema. It uses JWT authentication.
+You can add movie, movie-session, cinema-halls.You could use filtering to find movie 
+or movie session depends on title, genres, actors or date.
+After  authentication user could create order and add preferable amount of ticket.
+### How to run locally:
 
-- Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before start
-- Useful [link](https://soshace.com/dockerizing-django-with-postgres-redis-and-celery/) about theory 
-  (without Celery & redis of course)
+- Make sure you have Python 3 and pip installed on your system.
+- Clone the repository using the command: 
+```
+git clone git@github.com:oksana-feshchenko/cinema-paradize.git
+```
 
-## Task:
+- Change directory:
+```
+cd cinema-paradize
+```
+- Create and activate virtual environment:
+```
+python -m venv venv
+source venv/bin/activate
+```
+- Install the required dependencies using the command:
+```
+pip install -r requirements.txt
+```
+- Set environmental variables:
+```
+ $env:DB_HOST = 'your db host name'
+ $env:DB_NAME = 'your db name'
+ $env:DB_USER = 'your db user name'
+ $env:DB_PASSWORD =  'your db passoword'
+ $env:SEKRET_KEY =  'your secret key'
 
-Here, you need to fully dockerize this existing DRF project Cinema. 
-You need to make your service fully independent of your local machine.
-So the only requirement to run your project is `Docker`.
 
-### Task requirements:
-- Use `.dockerignore` for ignoring unnecessary stuff in your images;
-- Use `Dockerfile` for building `app` image with DRF application;
-- Use `docker-compose.yml` file for managing multiple services (containers) at the same time;
-- Switch to `PostgreSQL` database instead of `SQLite` using official docker image;
-- Implement `wait_for_db` 
-  [management command](https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/), 
-  which waits for the database to be available. 
-  So your services won't throw any errors during the `docker-compose up` command;
-- Make your docker images as thin as possible;
-- Use good practices of how to handle media, static files & volumes with docker.
+```
+
+- Set up the database by running the command: 
+```
+python manage.py migrate
+```
+- Create a superuser by running the command: 
+```
+python manage.py createsuperuser
+```
+ (this is optional, but you may want to create a superuser to access all functionality).
+- Start the development server by running the command: 
+```
+python manage.py runserver
+```
 
 
-### How to check, that task is done:
-- Run `docker-compose up` command, and check with `docker ps`, that 2 services are up and running
-  (here check, that `app` is always waiting for `db` using `wait_for_db` command);
-- Go to `127.0.0.1:8000/api/` and check project endpoints via DRF interface (image uploading for sure);
-- Create new admin user. Enter container `docker exec -it <container_name> bash`, and create in from there;
-- Run tests using different approach: `docker-compose run app sh -c "python manage.py test"`;
-- If needed, also check the flake8: `docker-compose run app sh -c "flake8"`.
-- If everything is working fine - you are ready to push your code :).
+### Run with docker:
+- Install docker.
+- Run this commands
+```
+docker-compose build
+docker compose up
+```
+
+- Open your browser and navigate to http://localhost:8000/ to verify that everything is working properly.
+
