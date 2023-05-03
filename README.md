@@ -4,6 +4,10 @@ This is DRF project for managing your own cinema. It uses JWT authentication.
 You can add movie, movie-session, cinema-halls.You could use filtering to find movie 
 or movie session depends on title, genres, actors or date.
 After  authentication user could create order and add preferable amount of ticket.
+All available endpoins for user:
+![user](images/user_endpoints.png)
+Enpoints for other features:
+![cinema](images/cinema_endpoints.png)
 ### How to run locally:
 
 - Make sure you have Python 3 and pip installed on your system.
@@ -33,7 +37,8 @@ pip install -r requirements.txt
  $env:DB_NAME = 'your db name'
  $env:DB_USER = 'your db user name'
  $env:DB_PASSWORD =  'your db passoword'
- $env:SEKRET_KEY =  'your secret key'
+ $env:DJANGO_SECRET_KEY =  'your secret key'
+ $env:DJANGO_DEBUG = 'boolean'
 
 
 ```
