@@ -19,7 +19,9 @@ cd cinema-paradize
 - Create and activate virtual environment:
 ```
 python -m venv venv
-source venv/bin/activate
+venv\Scripts\activate (on Windows)
+source venv/bin/activate (on macOS)
+
 ```
 - Install the required dependencies using the command:
 ```
